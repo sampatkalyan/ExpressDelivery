@@ -11,22 +11,29 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar {% if not request.user.is_authenticated %} navbar-expand-lg {% endif %} navbar-dark bg-dark">
         <a class="navbar-brand" href="/">Express Delivery</a>
+        {% if not request.user.is_authenticated %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#"> Customer<span class="sr-only">(current)</span></a>
+            <li class="nav-item {% if not request.GET.next != '/delivery-man/' %} active {% endif %}">
+              <a class="nav-link" href="/sign-in/?next=/customer/"> Customer<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Courier</a>
+            <li class="nav-item {% if not request.GET.next == '/delivery-man/' %} active {% endif %}">
+              <a class="nav-link" href="/sign-in/?next=/delivery-man/">Delivery Man</a>
             </li>
           </ul>
         </div>
+        {% else %}
+          <form class="form-inline">
+            <span class="mr-4" style="color:blue">{{ request.user.get_full_name|title }}</span>
+            <a href="/sign-out" class="btn btn-outline-primary"> Sign Out </a>
+          </form>
+        {% endif %}
       </nav>
       {% block content %}{% endblock %}
       <footer class="text-center mt-5 mb-5">
