@@ -77,6 +77,6 @@ Contributions to the ExpressDelivery system are welcome! If you find any issues 
 
 ---
 
-This project is developed and maintained by [Your Name]. For questions or inquiries, please contact [Your Email].
+This project is developed and maintained by Andavarapu Sampat Kalyan. For questions or inquiries, please contact sampatkalyana@gmail.com.
 
 **Disclaimer:** This repository is provided as a sample project and may not have complete functionality or security features. It's important to review and implement security best practices before deploying a system to a production environment.
